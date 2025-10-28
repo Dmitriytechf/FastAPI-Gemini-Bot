@@ -31,11 +31,12 @@ source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
-2. Настройка переменных окружения
-# .env файл
+2. **Настройка переменных окружения**
+.env файл
 GOOGLE_API_KEY=your_gemini_api_key_here
 3. Запуск приложения командой:
 ```bash
 uvicorn main:app --reload
 ```
+
 
