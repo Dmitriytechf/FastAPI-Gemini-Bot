@@ -48,22 +48,13 @@ convo = model.start_chat(history=[])
 def format_response(text):
     clean_text = text
 
-    # Убираем Markdown разметку
-    clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', clean_text)
-    clean_text = re.sub(r'\*(.*?)\*', r'\1', clean_text) 
-    clean_text = re.sub(r'_(.*?)_', r'\1', clean_text)
-    
-    # Заменяем маркеры списков на переносы строк
-    clean_text = clean_text.replace("* ", "\n• ")
-    clean_text = clean_text.replace("• ", "\n• ")
-    
-    # Убираем все обратные слеши
-    clean_text = clean_text.replace('\\"', '"')
-    clean_text = clean_text.replace("\\'", "'")
-    clean_text = clean_text.replace('\\\\"', '"')
-    clean_text = clean_text.replace('\\\\', '\\')
-    clean_text = clean_text.replace('\\', '')
+    while '\\' in clean_text:
+        clean_text = clean_text.replace('\\', '')
 
+    # Остальная обработка
+    clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', clean_text)
+    clean_text = re.sub(r'\*(.*?)\*', r'\1', clean_text)
+    clean_text = clean_text.replace("* ", "\n• ")
     clean_text = re.sub(r'\n\s+', '\n', clean_text)
     clean_text = re.sub(r'[ \t]+', ' ', clean_text)
     clean_text = clean_text.replace('\n', '<br>')
