@@ -20,7 +20,7 @@
 - **Jinja2** (3.1.6) - шаблонизатор для HTML
 
 ## Внешний вид
-<img width="1513" height="899" alt="image" src="https://github.com/user-attachments/assets/aa7cd33c-1045-4d97-ae50-1f83e5ab6f5b" />
+<img width="1494" height="868" alt="image" src="https://github.com/user-attachments/assets/43c5c3f2-1ef1-4377-8e5e-efa11f1c6c8b" />
 <img width="1444" height="883" alt="image" src="https://github.com/user-attachments/assets/8336fc84-a342-4447-8e6c-4d5cddbe94de" />
 
 ## 🛠 Установка и запуск
@@ -38,3 +38,4 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 ```bash
 uvicorn main:app --reload
 ```
+
