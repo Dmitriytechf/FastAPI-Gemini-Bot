@@ -29,7 +29,7 @@ async def process_message(request: Request):
                 <p class="text-sm">{message}</p>
             </div>
         </div>
-        
+
         <div class="flex justify-start">
             <div class="bg-blue-100 border border-blue-200 rounded-2xl rounded-bl-none px-4 py-3 max-w-[80%]">
                 <p class="text-gray-800 text-sm">{response}</p>

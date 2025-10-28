@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen p-4">
     <div class="max-w-7xl mx-auto mt-20">
-        <h1 class="text-3xl font-bold text-center text-gray-800 mb-12">🤖 AI Bots</h1>
+        <h1 class="text-5xl font-bold text-center text-gray-800 mb-12">🤖 AI Bots</h1>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Левая панель  -->
@@ -17,7 +17,7 @@
                 <div class="flex items-center gap-2 mb-4">
                     <div class="w-3 h-3 bg-red-500 rounded-full"></div>
                     <h2 class="text-xl font-semibold text-gray-700">No Memory Gemeni Bot</h2>
-                    <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded">
+                    <span class="text-xs bg-red-100 text-red-600 px-3 py-2 rounded">
                         Без памяти
                     </span>
                 </div>
@@ -25,18 +25,18 @@
                     * Каждый запрос обрабатывается независимо
                 </div>
                 
-                <div class="h-[450px] overflow-y-auto mb-6 space-y-4 flex-grow">
-                    <div class="bg-blue-100 rounded-lg p-4 ml-4">
-                        <p class="text-gray-800" id="quick-response">
+                <div class="h-[450px] overflow-y-auto mb-6 space-y-4 flex-grow" id="quick-messages">
+                    <div class="bg-blue-100 rounded-lg p-4 ml-4 welcome-message">
+                        <p class="text-gray-800">
                             Привет! Я простой бот. Я не помню предыдущие сообщения.
                         </p>
                     </div>
                 </div>
 
                 <form hx-post="/process-message" 
-                    hx-target="#quick-response" 
-                    hx-swap="outerHTML"
-                    hx-on::after-request="this.reset()" 
+                    hx-target="#quick-messages"
+                    hx-swap="beforeend"
+                    hx-on::after-request="this.reset(); document.querySelector('#quick-messages .welcome-message')?.remove()"
                     class="flex gap-2 mt-auto">
                     <input type="text" 
                         name="user-input" 
@@ -55,14 +55,16 @@
                 <div class="flex items-center gap-2 mb-4">
                     <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                     <h2 class="text-xl font-semibold text-gray-700">AI Gemini</h2>
-                    <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded">С памятью</span>
+                    <span class="text-xs bg-green-100 text-green-600 px-3 py-2 rounded">
+                        С памятью
+                    </span>
                 </div>
                 <div class="text-sm text-gray-500 mb-3">
                     * Помнит историю разговора
                 </div>
                 
                 <div class="h-[450px] overflow-y-auto mb-6 space-y-4 flex-grow" id="chat-messages">
-                    <div class="bg-green-100 rounded-lg p-4 ml-4">
+                    <div class="bg-green-100 rounded-lg p-4 ml-4 welcome-message">
                         <p class="text-gray-800">
                             Привет! Я умный бот и помню наш разговор.
                         </p>
@@ -72,11 +74,11 @@
                 <form hx-post="/process-chat" 
                     hx-target="#chat-messages" 
                     hx-swap="beforeend"
-                    hx-on::after-request="this.reset()"
+                    hx-on::after-request="this.reset(); document.querySelector('#chat-messages .welcome-message')?.remove()"
                     class="flex gap-2 mt-auto">
                     <input type="text" 
                         name="input-chat" 
-                        placeholder="Поговорите со мной..." 
+                        placeholder="Спросите что-нибудь..." 
                         class="flex-1 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-green-500"
                         required>
                     <button type="submit" 
